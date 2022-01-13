@@ -22,7 +22,7 @@ class Example1RootWidget extends StatelessWidget {
                 ClipPath(
                   clipper: MyCustomClipper(),
                   child: Container(
-                    width: 300,
+                    width: 400,
                     height: 100,
                     color: Colors.blue,
                   ),
@@ -39,19 +39,23 @@ class Example1RootWidget extends StatelessWidget {
 class MyCustomClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
-    const circleWidth = 72.0;
     Path path = Path();
-
-    path.moveTo(0, 18);
-    path.lineTo(0, (size.height));
-    path.lineTo(size.width, size.height);
-    path.lineTo(size.width, (18));
-    path.lineTo(0, 18);
-    path.addOval(Rect.fromCircle(
-        center: Offset(size.width / 2, (size.height / 2) - 14),
-        radius: circleWidth / 2));
-    path.close();
-
+    path.lineTo(size.width * 0.58, size.height / 5);
+    path.cubicTo(size.width * 0.56, size.height * 0.08, size.width * 0.53, 0,
+        size.width / 2, 0);
+    path.cubicTo(size.width * 0.47, 0, size.width * 0.44, size.height * 0.08,
+        size.width * 0.42, size.height / 5);
+    path.cubicTo(size.width * 0.42, size.height / 5, 0, size.height / 5, 0,
+        size.height / 5);
+    path.cubicTo(0, size.height / 5, 0, size.height, 0, size.height);
+    path.cubicTo(
+        0, size.height, size.width, size.height, size.width, size.height);
+    path.cubicTo(size.width, size.height, size.width, size.height / 5,
+        size.width, size.height / 5);
+    path.cubicTo(size.width, size.height / 5, size.width * 0.58,
+        size.height / 5, size.width * 0.58, size.height / 5);
+    path.cubicTo(size.width * 0.58, size.height / 5, size.width * 0.58,
+        size.height / 5, size.width * 0.58, size.height / 5);
     return path;
   }
 
